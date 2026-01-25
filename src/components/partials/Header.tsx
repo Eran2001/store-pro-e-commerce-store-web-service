@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingBag, Search, User, Menu, X } from "lucide-react";
+import { ShoppingBag, Search, User, Menu, X, Sun, Moon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/hooks/useCart";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const navLinks = [
   { label: "Shop All", href: "/products" },
@@ -22,6 +23,7 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { toggleCart, itemCount } = useCart();
   const { isAuthenticated, user } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="sticky top-0 z-50 glass border-b">
@@ -120,6 +122,14 @@ export function Header() {
                 <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent text-xs font-bold text-accent-foreground">
                   {itemCount > 9 ? "9+" : itemCount}
                 </span>
+              )}
+            </Button>
+
+            <Button variant="ghost" size="icon" onClick={toggleTheme}>
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
               )}
             </Button>
           </div>
