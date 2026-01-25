@@ -26,7 +26,7 @@ export function Header() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-50 glass border-b">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur border-b border-border">
       <div className="container">
         <div className="flex h-16 items-center justify-between gap-4">
           <Button

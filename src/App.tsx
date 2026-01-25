@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { CartProvider } from "@/contexts/CartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const Index = lazy(() => import("./pages"));
 const Products = lazy(() => import("./pages/Products"));
@@ -27,6 +28,11 @@ function PageLoader() {
   );
 }
 
+function ScrollHandler() {
+  useScrollToTop();
+  return null;
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
@@ -34,6 +40,7 @@ const App = () => (
         <TooltipProvider>
           <Sonner />
           <BrowserRouter>
+            <ScrollHandler />
             <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Index />} />
