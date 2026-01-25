@@ -10,11 +10,11 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-import { DefaultLayout } from "@/components/layout/DefaultLayout";
 import { Button } from "@/components/ui/button";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
+import { DefaultLayout } from "@/layouts/DefaultLayout";
 
 const menuItems = [
   { icon: Package, label: "My Orders", href: "/account/orders", count: 3 },
