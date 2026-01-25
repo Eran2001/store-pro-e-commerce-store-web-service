@@ -1,4 +1,10 @@
-import { createContext, useState, useCallback, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  type ReactNode,
+} from "react";
 
 import type { CartItem, Product } from "../constants/mockData";
 
@@ -113,4 +119,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
       {children}
     </CartContext.Provider>
   );
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+export function useCart() {
+  const context = useContext(CartContext);
+
+  if (!context) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+
+  return context;
 }

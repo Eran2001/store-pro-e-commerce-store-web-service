@@ -8,12 +8,10 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { useAuth } from "@/contexts/AuthContext";
-import { useToast } from "@/hooks/use-toast";
 
 export default function Register() {
   const navigate = useNavigate();
   const { register, isLoading } = useAuth();
-  const { toast } = useToast();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,28 +23,17 @@ export default function Register() {
     e.preventDefault();
 
     if (!agreedToTerms) {
-      toast({
-        title: "Terms required",
-        description: "Please agree to the terms and conditions.",
-        variant: "destructive",
-      });
+      console.log("DOne");
       return;
     }
 
     const success = await register(name, email, password);
 
     if (success) {
-      toast({
-        title: "Welcome to StorePro!",
-        description: "Your account has been created successfully.",
-      });
+      console.log("done");
       navigate("/");
     } else {
-      toast({
-        title: "Registration failed",
-        description: "Please check your information and try again.",
-        variant: "destructive",
-      });
+      console.log("failed");
     }
   };
 
@@ -189,7 +176,7 @@ export default function Register() {
             </div>
 
             <Button
-              variant="accent"
+              variant="default"
               size="lg"
               type="submit"
               className="w-full"

@@ -7,12 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { useAuth } from "@/contexts/AuthContext";
-import { useToast } from "@/hooks/use-toast";
 
 export default function Login() {
   const navigate = useNavigate();
   const { login, isLoading } = useAuth();
-  const { toast } = useToast();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,26 +22,17 @@ export default function Login() {
     const success = await login(email, password);
 
     if (success) {
-      toast({
-        title: "Welcome back!",
-        description: "You have successfully logged in.",
-      });
+      console.log("Done");
       navigate("/");
     } else {
-      toast({
-        title: "Login failed",
-        description: "Please check your email and password.",
-        variant: "destructive",
-      });
+      console.log("Failed");
     }
   };
 
   return (
     <div className="flex min-h-screen">
-      {/* Left Side - Form */}
       <div className="flex w-full flex-col justify-center px-8 lg:w-1/2 lg:px-16">
         <div className="mx-auto w-full max-w-md">
-          {/* Logo */}
           <Link to="/" className="mb-8 flex items-center gap-2">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
               <span className="text-xl font-bold text-primary-foreground">
@@ -111,7 +100,7 @@ export default function Login() {
             </div>
 
             <Button
-              variant="accent"
+              variant="default"
               size="lg"
               type="submit"
               className="w-full"
@@ -132,7 +121,6 @@ export default function Login() {
             </Link>
           </div>
 
-          {/* Demo credentials */}
           <div className="mt-8 rounded-lg bg-secondary/50 p-4">
             <p className="text-sm font-medium">Demo Credentials</p>
             <p className="mt-1 text-sm text-muted-foreground">
@@ -144,7 +132,6 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Right Side - Image */}
       <div
         className="hidden lg:block lg:w-1/2"
         style={{ background: "var(--gradient-hero)" }}

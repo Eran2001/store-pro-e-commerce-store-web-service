@@ -2,20 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CreditCard, Lock, ChevronLeft, Check, Truck } from "lucide-react";
 
-import { DefaultLayout } from "@/components/layout/DefaultLayout";
+import { DefaultLayout } from "@/layouts/DefaultLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 import { useCart } from "@/contexts/CartContext";
-import { useAuth } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
 
 type CheckoutStep = "shipping" | "payment" | "confirmation";
@@ -29,7 +21,6 @@ const shippingMethods = [
 export default function Checkout() {
   const navigate = useNavigate();
   const { items, subtotal, tax, total, clearCart } = useCart();
-  const { isAuthenticated } = useAuth();
 
   const [step, setStep] = useState<CheckoutStep>("shipping");
   const [shippingMethod, setShippingMethod] = useState("standard");
@@ -62,7 +53,7 @@ export default function Checkout() {
           <p className="mt-2 text-muted-foreground">
             Add some products before checking out.
           </p>
-          <Button variant="accent" className="mt-6" asChild>
+          <Button variant="default" className="mt-6" asChild>
             <Link to="/products">Continue Shopping</Link>
           </Button>
         </div>
@@ -285,7 +276,7 @@ export default function Checkout() {
                 </div>
 
                 <Button
-                  variant="accent"
+                  variant="default"
                   size="lg"
                   type="submit"
                   className="w-full"
@@ -366,7 +357,7 @@ export default function Checkout() {
                     Back
                   </Button>
                   <Button
-                    variant="accent"
+                    variant="default"
                     size="lg"
                     type="submit"
                     className="flex-1"
@@ -403,7 +394,7 @@ export default function Checkout() {
                 </div>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-                  <Button variant="accent" asChild>
+                  <Button variant="default" asChild>
                     <Link to="/products">Continue Shopping</Link>
                   </Button>
                   <Button variant="outline" asChild>
